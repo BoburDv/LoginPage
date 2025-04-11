@@ -1025,6 +1025,9 @@
   .mt-\[10\%\] {
     margin-top: 10%;
   }
+  .mt-\[15\%\] {
+    margin-top: 15%;
+  }
   .apexcharts-canvas {
     & .apexcharts-tooltip {
       background-color: white !important;
