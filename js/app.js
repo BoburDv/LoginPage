@@ -18,7 +18,6 @@ elForm.addEventListener("submit", function(e){
     const checker = validator(result);
 
     if (checker) {
-        // Toast message for validation error
         const toast = document.getElementById("toast-warning");
         const toastText = document.getElementById("toast-warning-message");
         toastText.textContent = checker.massage;
@@ -53,7 +52,7 @@ function validator(obj){
 
 function login(userData){
     const spinner = document.querySelector('button svg');
-    spinner.style.display = "inline-block"; // Show spinner when form is submitted
+    spinner.style.display = "inline-block";
 
     fetch("https://json-api.uz/api/project/fn37/auth/login", {
         method: "POST",
@@ -66,8 +65,7 @@ function login(userData){
     .then((res) => {
         if (res.token) {
             localStorage.setItem("user", JSON.stringify(res.user));
-            
-            // Toast success message
+
             const toast = document.getElementById("toast-success");
             const toastText = document.getElementById("toast-success-message");
             toastText.textContent = "Kirish muvaffaqiyatli bo‘ldi";
@@ -77,10 +75,9 @@ function login(userData){
             setTimeout(() => {
                 toast.classList.add("hidden");
                 toast.classList.remove("flex");
-                window.location.href = "/index.html";  // Redirect after success
+                window.location.href = "/index.html";
             }, 2000);
         } else {
-            // Toast danger message for invalid login or password
             const toast = document.getElementById("toast-danger");
             const toastText = document.querySelector("#toast-danger .ms-3");
             toastText.textContent = "Login yoki parol noto‘g‘ri!";
@@ -107,6 +104,6 @@ function login(userData){
         }, 3000);
     })
     .finally(() => {
-        spinner.style.display = "none"; // Hide spinner after response
+        spinner.style.display = "none";
     });
 }
