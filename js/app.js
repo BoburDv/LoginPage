@@ -13,9 +13,9 @@ elForm.addEventListener("submit", function(e){
     const formData = new FormData(e.target);
     const result = {};
     for (const [key, value] of formData.entries()){
-        result[key] = value;
+        result[key] = value
     }
-    const checker = validator(result);
+    const checker = validator(result)
 
     if (checker) {
         const toast = document.getElementById("toast-warning")
@@ -27,9 +27,9 @@ elForm.addEventListener("submit", function(e){
             toast.classList.add("hidden")
             toast.classList.remove("flex")
         }, 3000);
-        e.target[checker.target].focus();
+        e.target[checker.target].focus()
     } else {
-        login(result);
+        register(result)
     }
 })
 
@@ -50,11 +50,11 @@ function validator(obj){
     return false;
 }
 
-function login(userData){
+function register(userData){
     const spinner = document.querySelector('button svg');
     spinner.style.display = "inline-block";
 
-    fetch("https://json-api.uz/api/project/fn37/auth/login",{
+    fetch("https://json-api.uz/api/project/fn37/auth/register",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ function login(userData){
 
             const toast = document.getElementById("toast-success")
             const toastText = document.getElementById("toast-success-message")
-            toastText.textContent = "Kirish muvaffaqiyatli"
+            toastText.textContent = "Ro'yxatdan o'tish muvoffaqiyatli"
             toast.classList.remove("hidden")
             toast.classList.add("flex")
 
@@ -80,18 +80,18 @@ function login(userData){
         } else {
             const toast = document.getElementById("toast-danger")
             const toastText = document.querySelector("#toast-danger .ms-3")
-            toastText.textContent = "Login yoki parol noto'g'ri"
+            toastText.textContent = "Xatolik: Ro'yxatdan o'tishda xatolik"
             toast.classList.remove("hidden")
             toast.classList.add("flex")
 
             setTimeout(() => {
                 toast.classList.add("hidden")
                 toast.classList.remove("flex")
-            }, 3000);
+            }, 3000)
         }
     })
     .catch((error) => {
-        console.log(error);
+        console.log("Error:", error)
         const toast = document.getElementById("toast-danger")
         const toastText = document.querySelector("#toast-danger .ms-3")
         toastText.textContent = "server xato"
@@ -103,7 +103,7 @@ function login(userData){
             toast.classList.remove("flex")
         }, 2000)
     })
-    .finally(() =>{
+    .finally(() => {
         spinner.style.display = "none"
     });
 }
